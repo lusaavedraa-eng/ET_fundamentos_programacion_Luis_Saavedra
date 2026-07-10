@@ -50,11 +50,28 @@ def busqueda_precio(recorridos,venta,p_min,p_max):
             else:
                 print("recorridos encontrados: ")
                 print(lista)
+def buscar_codigo(venta,codigo):
+    codigo = codigo.upper()
+    for cod in venta:
+        if cod.upper() == codigo:
+            return True
+    return False
+def actualizar_precio(venta,codigo,nuevo_precio):
+    codigo = codigo.upper()
+    if buscar_codigo(venta,codigo):
+        for cod in venta:
+            if cod.upper == codigo:
+                venta[cod][0] = nuevo_precio
+                return True
+    return False
+
+
+
 
             
 
 
-
+    
 while True:
     print("========== MENÚ PRINCIPAL ==========")
     print("1. Asientos por ciudad de origen")
@@ -80,7 +97,31 @@ while True:
 
             except: ValueError
             print("Debe ingresar valores enteros")
+    elif op == 3:
+        while True:
+            codigo = input("ingrese codigo del recorrido: ").upper
+            while True:
+                try:
+                    nuevo_precio = int(input("ingrese nuevo precio: "))
+                    if nuevo_precio>0:
+                        break
+                    else:
+                        print("el precio debe ser mayor a 0")
+                except: ValueError
+                print("debe ingresar un numero entero")
+                if actualizar_precio(venta,codigo,nuevo_precio):
+                    print("Precio actualizado")
+                else:
+                    print("El código no existe")
+                    pregunta = input("¿Desea actualizar otro precio (s/n)?").lower
+                    if pregunta == "n":
+                        break
 
+
+
+    elif op == 4:
+
+    elif op == 5:
 
     elif op == 6:
         print("programa finalizado.")
