@@ -35,7 +35,23 @@ def asientos_origen(recorridos,venta,origen):
             total = total + venta[codigo][1]
     print("el total de asientos disponibles es: ",total)
 
+def busqueda_precio(recorridos,venta,p_min,p_max):
+    lista = []
+    for codigo in venta:
+        precio = venta[codigo][0]
+        asientos = venta[codigo][1]
+        if precio>= p_min and precio <= p_max and asientos > 0:
+            origen = recorridos[codigo][0]
+            destino = recorridos[codigo][1]
+            lista.append(f"{origen}- {destino}-{codigo}")
+            lista.sort()
+            if len(lista) == 0:
+                print("No hay recorridos en ese rango de precios.")
+            else:
+                print("recorridos encontrados: ")
+                print(lista)
 
+            
 
 
 
@@ -48,10 +64,24 @@ while True:
     print("5. Eliminar recorrido")
     print("6. Salir")
     print("=====================================")
-    opcion = leer_opcion()
-    if opcion == 1:
+    op = leer_opcion()
+    if op == 1:
         origen = input("ingrese ciudad de origen: ")
         asientos_origen(recorridos, venta, origen)
-    elif opcion == 6:
+    elif op == 2:
+        while True:
+            try:
+                minimo = int(input("ingrese precio minimo: "))
+                maximo = int(input("ingrese precio maximo: "))
+                if minimo>= 0 and maximo >= 0 and minimo <= maximo:
+                    break
+                else:
+                    print("Debe ingresar valores enteros")
+
+            except: ValueError
+            print("Debe ingresar valores enteros")
+
+
+    elif op == 6:
         print("programa finalizado.")
         break
