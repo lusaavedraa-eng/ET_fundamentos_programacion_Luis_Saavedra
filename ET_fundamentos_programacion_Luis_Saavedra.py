@@ -26,6 +26,19 @@ def leer_opcion():
                 print("Debe seleccionar una opción válida")
         except:
             print("Debe seleccionar una opción válida")
+
+
+def asientos_origen(recorridos,venta,origen):
+    total = 0
+    for codigo in recorridos:
+        if recorridos[codigo][0].lower() == origen.lower():
+            total = total + venta[codigo][1]
+    print("el total de asientos disponibles es: ",total)
+
+
+
+
+
 while True:
     print("========== MENÚ PRINCIPAL ==========")
     print("1. Asientos por ciudad de origen")
@@ -37,5 +50,8 @@ while True:
     print("=====================================")
     opcion = leer_opcion()
     if opcion == 1:
-        def asientos_origen(recorridos,venta,origen):
-            
+        origen = input("ingrese ciudad de origen: ")
+        asientos_origen(recorridos, venta, origen)
+    elif opcion == 6:
+        print("programa finalizado.")
+        break
